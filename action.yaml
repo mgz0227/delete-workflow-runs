@@ -1,4 +1,4 @@
-name: 'Delete workflow runs'
+name: 'Delete the workflow runs'
 description: 'An action to delete workflow runs in a repository.'
 author: 'Bright Ran'
 
