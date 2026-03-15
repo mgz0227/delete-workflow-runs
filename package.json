@@ -1,24 +1,45 @@
 {
   "name": "delete-workflow-runs",
-  "version": "1.0.0",
-  "description": "The GitHub action to delete workflow runs in a repository.",
-  "main": "index.js",
+  "version": "2.1.0",
+  "description": "GitHub Action to delete workflow runs in a repository.",
+  "main": "dist/index.js",
+  "private": true,
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "npm run lint",
+    "build": "ncc build index.js -o dist --minify",
+    "test": "jest",
+    "lint": "eslint . --ext .js --no-config-lookup",
+    "format": "prettier --print-width 200 --write ./index.js",
+    "ci": "npm ci --prefer-offline --no-audit --progress=false"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ActionsRML/delete-workflow-runs.git"
+    "url": "git+https://github.com/Mattraks/delete-workflow-runs.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ActionsRML/delete-workflow-runs/issues"
+  "keywords": [
+    "github",
+    "actions",
+    "workflow",
+    "delete"
+  ],
+  "author": "Mattraks",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
   },
-  "homepage": "https://github.com/ActionsRML/delete-workflow-runs#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@octokit/rest": "^18.0.6"
+    "@actions/core": "^2.0.2",
+    "@octokit/plugin-throttling": "^11.0.3",
+    "@octokit/rest": "^22.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.4",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.2.0",
+    "prettier": "^3.7.4"
   }
 }
